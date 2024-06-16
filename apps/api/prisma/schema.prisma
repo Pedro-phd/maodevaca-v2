@@ -89,7 +89,7 @@ model Planning {
   transactions Transaction[]
   members      Member[]
 
-  User    User?   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  owner   User?   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   ownerId String? @map("owner_id")
 
   @@map("plannings")

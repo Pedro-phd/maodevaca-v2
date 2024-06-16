@@ -69,6 +69,20 @@ const seed = async () => {
     },
   });
 
+  const antoherPlanning2 = await client.planning.create({
+    data: {
+      description: faker.lorem.paragraph(),
+      name: faker.word.verb(),
+      members: {
+        createMany: {
+          data: {
+            userId: admin.id,
+          },
+        },
+      },
+    },
+  });
+
   await client.transaction.createMany({
     data: [
       {
@@ -93,6 +107,14 @@ const seed = async () => {
         tagsId: faker.helpers.arrayElements([tag.id, anotherTag.id]),
         ownerId: admin.id,
         type: 'OUTPUT',
+      },
+      {
+        amount: 10123.12,
+        description: faker.lorem.paragraph(),
+        tagsId: faker.helpers.arrayElements([tag.id, anotherTag.id]),
+        ownerId: admin.id,
+        type: 'OUTPUT',
+        planningId: antoherPlanning2.id,
       },
     ],
   });

@@ -7,6 +7,7 @@ import { TransactionsModule } from './domains/transactions/transactions.module';
 import { PlanningsModule } from './domains/plannings/plannings.module';
 import { TagsModule } from './domains/tags/tags.module';
 import { JwtConfigModule } from './jwt-config/jwt-config.module';
+import { MemberModule } from './domains/member/member.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { JwtConfigModule } from './jwt-config/jwt-config.module';
     PlanningsModule,
     TagsModule,
     JwtConfigModule,
+    MemberModule,
   ],
   controllers: [],
   providers: [PrismaService],
