@@ -12,8 +12,6 @@ export class AuthService {
   ) {}
 
   async login(user) {
-    console.log('login', user);
-
     // add payload fields
     const payload = { sub: user.id };
 
@@ -32,6 +30,10 @@ export class AuthService {
         },
       });
     } catch (error) {
+      return null;
+    }
+
+    if (!user) {
       return null;
     }
 

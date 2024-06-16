@@ -18,6 +18,7 @@ model User {
 
   tags          Tag[]
   owns_planning Planning[]
+  Member        Member[]
 
   @@map("users")
 }
@@ -26,8 +27,12 @@ model Transaction {
   id          Int      @id @default(autoincrement())
   amount      BigInt
   description String
-  tagsId      Tag[]
   paymentDate DateTime @default(now()) @map("payment_date")
+
+  tagsId Int[] @map("tags_id")
+
+  planning   Planning? @relation(fields: [planningId], references: [id], onDelete: Cascade)
+  planningId String?
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -42,13 +47,21 @@ model Tag {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
-
-  transactions Transaction[]
 
   @@index([userId, name])
   @@map("tags")
+}
+
+model Member {
+  id String @id @default(uuid())
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  planning   Planning @relation(fields: [planningId], references: [id], onDelete: Cascade)
+  planningId String
 }
 
 model Planning {
@@ -56,9 +69,13 @@ model Planning {
   name        String
   description String
 
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-  members   User[]
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @updatedAt @map("updated_at")
+  Transaction Transaction[]
+  members     Member[]
+
+  User    User?   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  ownerId String? @map("owner_id")
 
   @@map("plannings")
 }

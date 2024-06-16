@@ -17,7 +17,6 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     if (!user) {
       throw new UnauthorizedException('Email and/or password is invalid');
     }
-    console.log({ user });
     return user;
   }
 }
