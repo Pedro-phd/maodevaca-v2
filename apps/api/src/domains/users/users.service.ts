@@ -3,18 +3,22 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { hash } from 'bcrypt';
 import { Prisma } from '@prisma/client';
+import { UserDecorator } from 'src/decorators/user.decorator';
 
 @Injectable()
 export class UsersService {
   constructor(private prisma: PrismaService) {}
 
-  async findAllUsers() {
-    return await this.prisma.user.findMany({
+  async findUser(user: UserDecorator) {
+    return await this.prisma.user.findFirst({
       select: {
         id: true,
         name: true,
         email: true,
         avatarUrl: true,
+      },
+      where: {
+        id: user.id,
       },
     });
   }

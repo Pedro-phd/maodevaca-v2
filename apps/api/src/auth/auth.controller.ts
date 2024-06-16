@@ -1,9 +1,10 @@
 import { Controller, Post, Req, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBody } from '@nestjs/swagger';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 
 @Controller('auth')
+@ApiTags('Auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
@@ -12,8 +13,8 @@ export class AuthController {
   @ApiBody({
     schema: {
       example: {
-        email: '',
-        password: '',
+        email: 'admin@admin.com',
+        password: 'admin',
       },
     },
   })

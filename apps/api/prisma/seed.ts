@@ -76,17 +76,23 @@ const seed = async () => {
         description: faker.lorem.paragraph(),
         tagsId: faker.helpers.arrayElements([tag.id, anotherTag.id]),
         planningId: planning.id,
+        ownerId: admin.id,
+        type: 'INPUT',
       },
       {
         amount: 500,
         description: faker.lorem.paragraph(),
         tagsId: faker.helpers.arrayElements([tag.id, anotherTag.id]),
         planningId: antoherPlanning.id,
+        ownerId: another.id,
+        type: 'OUTPUT',
       },
       {
         amount: 10,
         description: faker.lorem.paragraph(),
         tagsId: faker.helpers.arrayElements([tag.id, anotherTag.id]),
+        ownerId: admin.id,
+        type: 'OUTPUT',
       },
     ],
   });

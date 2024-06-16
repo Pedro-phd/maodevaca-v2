@@ -10,20 +10,22 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { User, UserDecorator } from 'src/decorators/user.decorator';
 
-@ApiBearerAuth()
 @Controller('users')
-@UseGuards(AuthGuard('jwt'))
+@ApiTags('Users')
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard('jwt'))
   @Get()
-  async findAll() {
-    return await this.usersService.findAllUsers();
+  async user(@User() user: UserDecorator) {
+    return await this.usersService.findUser(user);
   }
 
-  @Post()
+  @Post('/new')
   @HttpCode(HttpStatus.CREATED)
   async createUser(@Body() data: CreateUserDTO) {
     await this.usersService.createUser(data);

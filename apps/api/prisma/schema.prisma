@@ -8,31 +8,43 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
+  id String @id @default(uuid())
+
   name      String
-  email     String   @unique
+  email     String  @unique
   password  String
-  avatarUrl String?  @map("avatar_url")
+  avatarUrl String? @map("avatar_url")
+
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
   tags          Tag[]
   owns_planning Planning[]
-  Member        Member[]
+  members_on    Member[]
+  transactions  Transaction[]
 
   @@map("users")
 }
 
+enum Types {
+  INPUT
+  OUTPUT
+}
+
 model Transaction {
   id          Int      @id @default(autoincrement())
-  amount      BigInt
+  amount      Float
   description String
   paymentDate DateTime @default(now()) @map("payment_date")
+  type        Types
+
+  user    User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  ownerId String @map("owner_id")
 
   tagsId Int[] @map("tags_id")
 
   planning   Planning? @relation(fields: [planningId], references: [id], onDelete: Cascade)
-  planningId String?
+  planningId String?   @map("planning_id")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -58,10 +70,12 @@ model Member {
   id String @id @default(uuid())
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String
+  userId String @map("user_id")
 
   planning   Planning @relation(fields: [planningId], references: [id], onDelete: Cascade)
-  planningId String
+  planningId String   @map("planning_id")
+
+  @@map("members")
 }
 
 model Planning {
@@ -69,10 +83,11 @@ model Planning {
   name        String
   description String
 
-  createdAt   DateTime      @default(now()) @map("created_at")
-  updatedAt   DateTime      @updatedAt @map("updated_at")
-  Transaction Transaction[]
-  members     Member[]
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  transactions Transaction[]
+  members      Member[]
 
   User    User?   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   ownerId String? @map("owner_id")
