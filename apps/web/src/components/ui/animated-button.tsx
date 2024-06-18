@@ -4,6 +4,8 @@ import * as React from 'react'
 
 import { cn } from '@/lib/utils'
 
+import { Spinner } from './spinner'
+
 const buttonVariants = cva(
   'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
   {
@@ -61,6 +63,7 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean
+  isLoading?: boolean
 }
 
 export type ButtonIconProps = IconProps | IconRefProps
@@ -76,7 +79,8 @@ const AnimatedButton = React.forwardRef<
       size,
       asChild = false,
       Icon,
-      iconPlacement,
+      iconPlacement = 'right',
+      isLoading = false,
       ...props
     },
     ref,
@@ -88,15 +92,25 @@ const AnimatedButton = React.forwardRef<
         ref={ref}
         {...props}
       >
-        {Icon && iconPlacement === 'left' && (
+        {Icon && !isLoading && iconPlacement === 'left' && (
           <div className="group-hover:translate-x-100 w-0 translate-x-[0%] pr-0 opacity-0 transition-all duration-200 group-hover:w-5 group-hover:pr-2 group-hover:opacity-100">
             <Icon />
           </div>
         )}
         <Slottable>{props.children}</Slottable>
-        {Icon && iconPlacement === 'right' && (
+        {Icon && !isLoading && iconPlacement === 'right' && (
           <div className="w-0 translate-x-[100%] pl-0 opacity-0 transition-all duration-200 group-hover:w-5 group-hover:translate-x-0 group-hover:pl-2 group-hover:opacity-100">
             <Icon />
+          </div>
+        )}
+        {isLoading && iconPlacement === 'left' && (
+          <div className="group-hover:translate-x-100 w-0 translate-x-[0%] pr-0 opacity-0 transition-all duration-200 group-hover:w-5 group-hover:pr-2 group-hover:opacity-100">
+            <Spinner />
+          </div>
+        )}
+        {Icon && iconPlacement === 'right' && (
+          <div className="w-0 translate-x-[100%] pl-0 opacity-0 transition-all duration-200 group-hover:w-5 group-hover:translate-x-0 group-hover:pl-2 group-hover:opacity-100">
+            <Spinner />
           </div>
         )}
       </Comp>
