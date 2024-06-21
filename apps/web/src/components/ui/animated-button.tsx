@@ -108,7 +108,7 @@ const AnimatedButton = React.forwardRef<
             <Spinner />
           </div>
         )}
-        {Icon && iconPlacement === 'right' && (
+        {isLoading && iconPlacement === 'right' && (
           <div className="w-0 translate-x-[100%] pl-0 opacity-0 transition-all duration-200 group-hover:w-5 group-hover:translate-x-0 group-hover:pl-2 group-hover:opacity-100">
             <Spinner />
           </div>

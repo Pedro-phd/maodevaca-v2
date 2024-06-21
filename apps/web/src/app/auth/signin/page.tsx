@@ -1,4 +1,5 @@
 'use client'
+
 import { AlertCircle, MoveRight } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -34,7 +35,7 @@ export default function SignInPage() {
               Login.
             </h1>
             <p className="text-sm text-muted-foreground">
-              Log in to enjoy 100% of our platform.
+              Login to enjoy 100% of our platform.
             </p>
           </div>
           <div className="block h-12 border" />

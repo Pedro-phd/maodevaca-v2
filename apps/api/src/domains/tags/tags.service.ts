@@ -9,10 +9,6 @@ export class TagsService {
 
   async listAll(user: UserDecorator) {
     return await this.prisma.tag.findMany({
-      select: {
-        id: true,
-        name: true,
-      },
       where: {
         userId: user.id,
       },
