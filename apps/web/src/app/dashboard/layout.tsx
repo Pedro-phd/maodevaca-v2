@@ -6,7 +6,7 @@ export default function DashboardLayout({
   children: React.ReactNode
 }>) {
   return (
-    <div className="animate-fade animate-ease-out flex h-screen w-full p-6">
+    <div className="flex h-screen w-full animate-fade gap-8 p-6 animate-ease-out">
       <MenuDashboard />
       {children}
     </div>

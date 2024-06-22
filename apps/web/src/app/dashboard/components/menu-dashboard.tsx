@@ -30,12 +30,13 @@ function MenuItem({ href, icon, title }: MenuItemProps) {
 
   return (
     <Tooltip>
-      <TooltipTrigger>
+      <TooltipTrigger className="group">
         <Link
           href={href}
           className={cn(
             'flex size-12 items-center justify-center rounded border bg-accent text-center',
             path === href && 'border-2 border-primary shadow-lg',
+            'border-2 transition-all hover:shadow-xl group-hover:border-amber-500',
           )}
         >
           {icon}

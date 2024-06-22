@@ -27,8 +27,8 @@ export default function SignUpPage() {
   )
 
   return (
-    <div className="flex w-full items-center justify-center gap-12">
-      <div className="animate-fade-left animate-delay-[2ms] animate-ease-in-out flex w-[600px] w-full flex-col justify-end gap-8">
+    <div className="flex h-full w-full items-center justify-center gap-12">
+      <div className="flex w-1/2 w-full max-w-[580px] animate-fade-left flex-col justify-end gap-8 animate-delay-[2ms] animate-ease-in-out">
         <div className="flex flex-col justify-start gap-4">
           <div className="text-right">
             <h1 className=" scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
@@ -114,11 +114,13 @@ export default function SignUpPage() {
           </div>
         </form>
       </div>
-      <Image
-        src={emoji}
-        alt="emoji festa"
-        className="animate-fade-left animate-delay-[1ms] animate-ease-in-out"
-      />
+      <div className="w-1/2 max-w-[580px]">
+        <Image
+          src={emoji}
+          alt="emoji festa"
+          className="animate-fade-left animate-delay-[1ms] animate-ease-in-out"
+        />
+      </div>
     </div>
   )
 }
