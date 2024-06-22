@@ -1,38 +1,46 @@
-import { ChevronRight } from 'lucide-react'
+'use client'
 
-import AnimatedParticles from '@/components/ui/animated-particles'
-import TextAnimatedGradient from '@/components/ui/text-animated-gradient'
-import { cn } from '@/lib/utils'
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
+
+import emoji from '@/../assets/emoji-home.png'
+import { Button } from '@/components/ui/button'
 
 export default function Home() {
+  const { push } = useRouter()
+
   return (
-    <div className="relative flex h-screen w-full items-center justify-center overflow-hidden rounded-lg">
-      <TextAnimatedGradient className="absolute top-10 z-10 cursor-pointer">
-        🎉 <hr className="mx-2 h-4 w-[1px] shrink-0 bg-gray-300" />{' '}
-        <span
-          className={cn(
-            `inline animate-gradient bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent`,
-          )}
+    <div className="flex h-screen w-full flex-col  items-center gap-8 p-12">
+      <header className="flex w-full justify-end gap-2">
+        <Button
+          onClick={() => push('/auth/signup')}
+          variant="outline"
+          className="text-primary"
         >
-          Começar agora
-        </span>
-        <ChevronRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
-      </TextAnimatedGradient>
-      <div className="z-10 flex flex-col gap-2">
-        <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight lg:text-5xl">
-          Organize sua vida <br />
-          com a plataforma <span className="text-primary">Mão de Vaca!</span>
-        </h1>
-        <p className="text-center text-sm text-muted-foreground">
-          Organizar, Planejar, Evoluir.
-        </p>
+          Cadastrar
+        </Button>
+        <Button onClick={() => push('/auth/signin')}>Entrar</Button>
+      </header>
+      <div className="m-auto flex w-full items-center justify-center gap-8">
+        <div className="text-right">
+          <h3 className="animate-fade-left animate-delay-[1ms] animate-ease-in-out">
+            Pronto para mudar de vida ?
+          </h3>
+          <h1 className="animate-fade-left animate-delay-[2ms] animate-ease-in-out scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+            Organize suas finanças
+          </h1>
+          <h1 className="animate-fade-left animate-delay-[3ms] animate-ease-in-out scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+            com a plataforma <span className="text-amber-500">Mão de Vaca</span>
+          </h1>
+        </div>
+        <Image
+          src={emoji}
+          alt="emoji com a boca de dinheiro"
+          width={200}
+          height={200}
+          className="animate-fade-right animate-delay-[1ms] animate-ease-in-out"
+        />
       </div>
-      <AnimatedParticles
-        className="absolute inset-0"
-        quantity={100}
-        ease={80}
-        refresh
-      />
     </div>
   )
 }
