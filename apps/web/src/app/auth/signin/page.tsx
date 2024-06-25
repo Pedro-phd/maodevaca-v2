@@ -33,7 +33,7 @@ export default function SignInPage() {
       />
       <div className="flex flex-col justify-start gap-4">
         <div>
-          <h1 className="animate-fade-left animate-delay-[2ms] animate-ease-in-out scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+          <h1 className="animate-fade-left scroll-m-20 text-4xl font-extrabold tracking-tight animate-delay-[2ms] animate-ease-in-out lg:text-5xl">
             Entrar
           </h1>
           <h3 className="animate-fade-left animate-delay-[1ms] animate-ease-in-out">
@@ -41,7 +41,7 @@ export default function SignInPage() {
           </h3>
         </div>
         <form
-          className="animate-fade-right animate-delay-[2ms] animate-ease-in-out flex w-full flex-col justify-start gap-2 rounded-md"
+          className="flex w-full animate-fade-right flex-col justify-start gap-2 rounded-md animate-delay-[2ms] animate-ease-in-out"
           onSubmit={handleSubmit}
         >
           {!success && message && (

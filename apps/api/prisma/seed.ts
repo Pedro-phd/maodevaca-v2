@@ -47,11 +47,17 @@ const seed = async () => {
       name: faker.word.verb(),
       members: {
         createMany: {
-          data: {
-            userId: faker.helpers.arrayElement([admin.id, another.id]),
-          },
+          data: [
+            {
+              userId: admin.id,
+            },
+            {
+              userId: another.id,
+            },
+          ],
         },
       },
+      ownerId: admin.id,
     },
   });
 
@@ -61,11 +67,17 @@ const seed = async () => {
       name: faker.word.verb(),
       members: {
         createMany: {
-          data: {
-            userId: faker.helpers.arrayElement([admin.id, another.id]),
-          },
+          data: [
+            {
+              userId: admin.id,
+            },
+            {
+              userId: another.id,
+            },
+          ],
         },
       },
+      ownerId: admin.id,
     },
   });
 
@@ -75,11 +87,17 @@ const seed = async () => {
       name: faker.word.verb(),
       members: {
         createMany: {
-          data: {
-            userId: admin.id,
-          },
+          data: [
+            {
+              userId: admin.id,
+            },
+            {
+              userId: another.id,
+            },
+          ],
         },
       },
+      ownerId: admin.id,
     },
   });
 

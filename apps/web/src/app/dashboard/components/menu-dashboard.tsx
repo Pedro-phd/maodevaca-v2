@@ -26,7 +26,7 @@ interface MenuItemProps {
 }
 
 function MenuItem({ href, icon, title }: MenuItemProps) {
-  const path = window?.location?.pathname ?? ''
+  const path = typeof window !== 'undefined' ? window.location.pathname : ''
 
   return (
     <Tooltip>

@@ -1,11 +1,5 @@
 import { format } from 'date-fns'
-import {
-  ArrowDownToDot,
-  ArrowUpFromDot,
-  CircleMinus,
-  CirclePlus,
-  SquareArrowOutUpRight,
-} from 'lucide-react'
+import { CircleMinus, CirclePlus, SquareArrowOutUpRight } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -31,7 +25,7 @@ function TransactionTable({ data }: Props) {
   return (
     <Table>
       <TableCaption>Transações do mês de {allMonths[month]}.</TableCaption>
-      <TableHeader>
+      <TableHeader className="bg-stone-100">
         <TableRow>
           <TableHead>Tipo</TableHead>
           <TableHead className="max-w-[200px]">Descrição</TableHead>

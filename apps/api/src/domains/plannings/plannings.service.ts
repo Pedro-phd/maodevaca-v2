@@ -66,6 +66,20 @@ export class PlanningsService {
             userId: user.id,
           },
         },
+        ownerId: user.id,
+      },
+      include: {
+        members: {
+          select: {
+            id: true,
+            user: {
+              select: {
+                name: true,
+                avatarUrl: true,
+              },
+            },
+          },
+        },
       },
     });
   }

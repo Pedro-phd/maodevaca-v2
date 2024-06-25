@@ -1,3 +1,5 @@
+import { Planning } from '@/domain/planning/model'
+
 import { Transaction } from './domain/transaction/model'
 
 export const mockTransactions: Transaction[] = [
@@ -51,5 +53,83 @@ export const mockTransactions: Transaction[] = [
     planningId: 'b0cb143d-6707-401f-9ae6-243fbcad3142',
     createdAt: '2024-06-16T16:58:14.965Z',
     updatedAt: '2024-06-16T16:58:14.965Z',
+  },
+]
+
+export const mockPlannings: Planning[] = [
+  {
+    id: '546e8528-9480-4f23-bac7-09c4648a0bc4',
+    name: 'overfeed',
+    description:
+      'Turbo ventus sollicito cuius tonsor delectus decimus. Agnitio uberrime aiunt amo ter thalassinus suppono. Tergiversatio quia sursum.',
+    createdAt: '2024-06-25T04:12:14.236Z',
+    updatedAt: '2024-06-25T04:12:14.236Z',
+    ownerId: '1cc9958e-6bf9-4971-ae2c-0f99eba7d561',
+    members: [
+      {
+        id: '8edff125-3b1b-4739-b098-0bb0506daebb',
+        user: {
+          name: 'admin',
+          avatarUrl: null,
+        },
+      },
+      {
+        id: '2129f80b-af1d-4a46-86c8-84132c044400',
+        user: {
+          name: 'Celia Konopelski',
+          avatarUrl: 'https://avatars.githubusercontent.com/u/13225608',
+        },
+      },
+    ],
+  },
+  {
+    id: '2beac356-b32b-42a4-87b2-ebedb7b8cb5c',
+    name: 'hunker',
+    description:
+      'Comminor explicabo vereor verto cariosus arcus cras adopto vos cursim. Volaticus absens eveniet alo apostolus ater. Aveho carcer absum quo video coruscus vigilo torrens contabesco officiis.',
+    createdAt: '2024-06-25T04:12:14.240Z',
+    updatedAt: '2024-06-25T04:12:14.240Z',
+    ownerId: '1cc9958e-6bf9-4971-ae2c-0f99eba7d561',
+    members: [
+      {
+        id: 'd7f8398e-95f3-463e-bbc5-34da9697f611',
+        user: {
+          name: 'admin',
+          avatarUrl: null,
+        },
+      },
+      {
+        id: '4f5c3c94-8fca-44b8-b083-d3796a492f28',
+        user: {
+          name: 'Celia Konopelski',
+          avatarUrl: 'https://avatars.githubusercontent.com/u/13225608',
+        },
+      },
+    ],
+  },
+  {
+    id: '809db250-d9ff-4b21-beac-45ee742aa28f',
+    name: 'instill',
+    description:
+      'Voco xiphias tego avaritia. Universe adimpleo qui non crebro tempora facilis vitium ante. Quas comedo subnecto ver tamen.',
+    createdAt: '2024-06-25T04:12:14.243Z',
+    updatedAt: '2024-06-25T04:12:14.243Z',
+    ownerId: '1cc9958e-6bf9-4971-ae2c-0f99eba7d561',
+    members: [
+      {
+        id: 'e1c3f5f0-175c-42d6-aa01-ebb08daaf03a',
+        user: {
+          name: 'admin',
+          avatarUrl: null,
+        },
+      },
+      {
+        id: 'fccebb07-bd74-45fe-a1c1-373179f22570',
+        user: {
+          name: 'Celia Konopelski',
+          avatarUrl: 'https://avatars.githubusercontent.com/u/13225608',
+        },
+      },
+    ],
   },
 ]
