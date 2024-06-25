@@ -192,6 +192,9 @@ importers:
       framer-motion:
         specifier: ^11.2.10
         version: 11.2.10(react-dom@19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522))(react@19.0.0-rc-f994737d14-20240522)
+      jose:
+        specifier: ^5.4.1
+        version: 5.4.1
       ky:
         specifier: ^1.3.0
         version: 1.3.0
@@ -3191,6 +3194,9 @@ packages:
   jiti@1.21.6:
     resolution: {integrity: sha512-2yTgeWTWzMWkHu6Jp9NKgePDaYHbntiwvYuuJLbbN9vl7DC9DvXKOB2BC3ZZ92D3cvV/aflH0osDfwpHepQ53w==}
     hasBin: true
+
+  jose@5.4.1:
+    resolution: {integrity: sha512-U6QajmpV/nhL9SyfAewo000fkiRQ+Yd2H0lBxJJ9apjpOgkOcBQJWOrMo917lxLptdS/n/o/xPzMkXhF46K8hQ==}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -6834,7 +6840,7 @@ snapshots:
 
   debug@3.2.7:
     dependencies:
-      ms: 2.1.2
+      ms: 2.1.3
 
   debug@4.3.4:
     dependencies:
@@ -8211,6 +8217,8 @@ snapshots:
 
   jiti@1.21.6: {}
 
+  jose@5.4.1: {}
+
   js-tokens@4.0.0: {}
 
   js-yaml@3.14.1:
@@ -9405,7 +9413,7 @@ snapshots:
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
       '@types/node': 20.14.2
-      acorn: 8.10.0
+      acorn: 8.12.0
       acorn-walk: 8.3.3
       arg: 4.1.3
       create-require: 1.1.1
