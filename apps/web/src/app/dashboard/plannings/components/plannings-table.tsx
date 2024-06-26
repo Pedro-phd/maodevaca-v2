@@ -1,4 +1,7 @@
+'use client'
+
 import { ExternalLink } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
@@ -18,8 +21,10 @@ interface Props {
 }
 
 function PlanningsTable({ data }: Props) {
-  const members = data.map((d) => d.members.map((m) => m.user))[0]
-  console.log(members)
+  const { push } = useRouter()
+  const goToTransactions = (id: string) => {
+    push(`/dashboard/plannings/${id}`)
+  }
 
   return (
     <Table>
@@ -39,19 +44,19 @@ function PlanningsTable({ data }: Props) {
               <TableCell className="font-medium">{d.name}</TableCell>
               <TableCell>{d.description}</TableCell>
               <TableCell className="flex gap-2">
-                {members.map((m) => {
+                {d.members.map((m) => {
                   return (
                     <Avatar>
-                      <AvatarImage src={m.avatarUrl} />
+                      <AvatarImage src={m.user.avatarUrl ?? ''} />
                       <AvatarFallback>
-                        {m.name.slice(0, 2).toUpperCase()}
+                        {m.user.name.slice(0, 2).toUpperCase()}
                       </AvatarFallback>
                     </Avatar>
                   )
                 })}
               </TableCell>
               <TableCell className="text-right">
-                <Button variant="link">
+                <Button variant="link" onClick={() => goToTransactions(d.id)}>
                   <ExternalLink />
                 </Button>
               </TableCell>

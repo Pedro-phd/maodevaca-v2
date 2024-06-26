@@ -1,3 +1,5 @@
+import { use } from 'react'
+
 import {
   Card,
   CardContent,
@@ -5,11 +7,12 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { mockTransactions } from '@/mock'
+import { getTransactions } from '@/http/get-transactions'
 
 import TransactionTable from './components/transaction-table'
 
 function Transactions() {
+  const data = use(getTransactions())
   return (
     <div className="h-full w-full">
       <Card>
@@ -20,7 +23,7 @@ function Transactions() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <TransactionTable data={mockTransactions} />
+          <TransactionTable data={data} />
         </CardContent>
       </Card>
     </div>

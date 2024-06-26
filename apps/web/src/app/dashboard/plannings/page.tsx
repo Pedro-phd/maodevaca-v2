@@ -1,3 +1,5 @@
+import { use } from 'react'
+
 import {
   Card,
   CardContent,
@@ -5,13 +7,15 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { mockPlannings } from '@/mock'
+import { getPlannings } from '@/http/get-plannings'
 
 import PlanningsTable from './components/plannings-table'
 
 function PlanningsPage() {
+  const data = use(getPlannings())
+
   return (
-    <div className="flex w-full">
+    <div className="w-full">
       <Card className="w-full">
         <CardHeader>
           <CardTitle>Planejamentos</CardTitle>
@@ -20,7 +24,7 @@ function PlanningsPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <PlanningsTable data={mockPlannings} />
+          <PlanningsTable data={data} />
         </CardContent>
       </Card>
     </div>
