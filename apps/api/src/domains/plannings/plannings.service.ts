@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { UserDecorator } from 'src/decorators/user.decorator';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { AddMemberDto } from './dto/add-member.dto';
+import { NewPlanningDto } from './dto/new-planning.dto';
 
 @Injectable()
 export class PlanningsService {
@@ -14,7 +15,7 @@ export class PlanningsService {
       },
     });
 
-    if (!user) {
+    if (!userToAdd) {
       throw new BadRequestException('This email does not belong to any user');
     }
     await this.prisma.planning.update({
@@ -66,7 +67,6 @@ export class PlanningsService {
             userId: user.id,
           },
         },
-        ownerId: user.id,
       },
       include: {
         members: {
@@ -78,6 +78,20 @@ export class PlanningsService {
                 avatarUrl: true,
               },
             },
+          },
+        },
+      },
+    });
+  }
+  async newPlanning(body: NewPlanningDto, user: UserDecorator) {
+    await this.prisma.planning.create({
+      data: {
+        name: body.name,
+        description: body.description,
+        ownerId: user.id,
+        members: {
+          create: {
+            userId: user.id,
           },
         },
       },

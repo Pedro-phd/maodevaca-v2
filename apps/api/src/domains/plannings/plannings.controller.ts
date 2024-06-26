@@ -4,6 +4,7 @@ import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
 import { PlanningsService } from './plannings.service';
 import { User, UserDecorator } from 'src/decorators/user.decorator';
 import { AddMemberDto } from './dto/add-member.dto';
+import { NewPlanningDto } from './dto/new-planning.dto';
 
 @ApiBearerAuth()
 @UseGuards(AuthGuard('jwt'))
@@ -26,7 +27,15 @@ export class PlanningsController {
   }
 
   @ApiBody({
-    type: [AddMemberDto],
+    type: NewPlanningDto,
+  })
+  @Post('/')
+  async newPlanning(@Body() body: NewPlanningDto, @User() user: UserDecorator) {
+    await this.planningService.newPlanning(body, user);
+  }
+
+  @ApiBody({
+    type: AddMemberDto,
   })
   @Post('/:planningId/members')
   async addMember(
