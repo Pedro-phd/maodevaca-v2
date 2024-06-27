@@ -1,5 +1,7 @@
 import { Suspense } from 'react'
 
+import SuspenseLoading from '@/components/suspense-loading'
+
 import MenuDashboard from './components/menu-dashboard'
 
 export default function DashboardLayout({
@@ -10,7 +12,7 @@ export default function DashboardLayout({
   return (
     <div className="flex h-screen w-full animate-fade gap-8 p-6 animate-ease-out">
       <MenuDashboard />
-      <Suspense fallback={<p>Loading ...</p>}>{children}</Suspense>
+      <Suspense fallback={<SuspenseLoading />}>{children}</Suspense>
     </div>
   )
 }
