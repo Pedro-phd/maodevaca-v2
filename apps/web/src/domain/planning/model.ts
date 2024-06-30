@@ -6,6 +6,6 @@ export interface Planning {
   description: string
   createdAt: string
   updatedAt: string
-  ownerId: string | null
+  ownerId: string
   members: Member[]
 }

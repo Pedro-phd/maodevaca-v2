@@ -1,7 +1,7 @@
 'use client'
 import { FormEvent, useState, useTransition } from 'react'
 
-interface FormState {
+export interface FormState {
   success: boolean
   message: string | null
   errors: Record<string, string[]> | null

@@ -1,5 +1,6 @@
 'use client'
 
+import { useQuery } from '@tanstack/react-query'
 import { CheckCircle2, PlusCircle } from 'lucide-react'
 import { CurrencyInput } from 'react-currency-mask'
 import { toast } from 'sonner'
@@ -9,6 +10,13 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import {
   Sheet,
   SheetContent,
   SheetDescription,
@@ -17,10 +25,20 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet'
 import { useFormState } from '@/hook/useFormState'
+import { getPlannings } from '@/http/get-plannings'
 
 import { newTransactionAction } from './action'
 
-function TransactionNew() {
+interface Props {
+  refetch: () => void
+}
+
+function TransactionNew({ refetch }: Props) {
+  const { data, isLoading } = useQuery({
+    queryKey: ['plannings-data'],
+    queryFn: getPlannings,
+  })
+  console.log(data)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [{ errors, message, success }, handleSubmit] = useFormState(
     newTransactionAction,
@@ -28,9 +46,9 @@ function TransactionNew() {
       toast('Transação adicionada com sucesso', {
         icon: <CheckCircle2 />,
       })
+      refetch()
     },
   )
-  console.log(errors, message, success)
   return (
     <Sheet>
       <SheetTrigger>
@@ -79,6 +97,21 @@ function TransactionNew() {
                   type="date"
                 />
               </div>
+
+              <Select name="planningId" disabled={isLoading}>
+                <SelectTrigger className="">
+                  <SelectValue placeholder="Transação" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="empty-planning#hash">
+                    Nenhum plano
+                  </SelectItem>
+                  {data?.map((p) => {
+                    return <SelectItem value={p.id}>{p.name}</SelectItem>
+                  })}
+                </SelectContent>
+              </Select>
+
               <RadioGroup defaultValue="INPUT" name="type">
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="INPUT" id="INPUT" />

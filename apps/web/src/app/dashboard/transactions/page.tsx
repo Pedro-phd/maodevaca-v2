@@ -1,4 +1,6 @@
-import { use } from 'react'
+'use client'
+
+import { useQuery } from '@tanstack/react-query'
 
 import {
   Card,
@@ -13,7 +15,13 @@ import TransactionNew from './components/transaction-new'
 import TransactionTable from './components/transaction-table'
 
 function Transactions() {
-  const data = use(getTransactions())
+  // const data = use(getTransactions())
+
+  const { data, refetch, isLoading } = useQuery({
+    queryKey: ['transactions-data'],
+    queryFn: getTransactions,
+  })
+
   return (
     <div className="h-full w-full">
       <Card>
@@ -24,10 +32,10 @@ function Transactions() {
               Aqui você acha as suas transações do mês!
             </CardDescription>
           </div>
-          <TransactionNew />
+          <TransactionNew refetch={refetch} />
         </CardHeader>
         <CardContent>
-          <TransactionTable data={data} />
+          <TransactionTable data={data} isLoading={isLoading} />
         </CardContent>
       </Card>
     </div>

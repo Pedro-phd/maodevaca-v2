@@ -3,6 +3,7 @@
 import { ExternalLink } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
+import SkeletonTableRow from '@/components/skeleton-table-row'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {
@@ -17,10 +18,11 @@ import {
 import { Planning } from '@/domain/planning/model'
 
 interface Props {
-  data: Planning[]
+  data?: Planning[]
+  isLoading: boolean
 }
 
-function PlanningsTable({ data }: Props) {
+function PlanningsTable({ data, isLoading = true }: Props) {
   const { push } = useRouter()
   const goToTransactions = (id: string) => {
     push(`/dashboard/plannings/${id}`)
@@ -31,14 +33,14 @@ function PlanningsTable({ data }: Props) {
       <TableCaption>Lista de todos seus planos.</TableCaption>
       <TableHeader className="bg-stone-100">
         <TableRow>
-          <TableHead className="w-[100px]">Nome</TableHead>
+          <TableHead className="">Nome</TableHead>
           <TableHead>Descrição</TableHead>
           <TableHead>Membros</TableHead>
           <TableHead className="text-right">Acessar</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {data.map((d) => {
+        {data?.map((d) => {
           return (
             <TableRow key={d.id}>
               <TableCell className="font-medium">{d.name}</TableCell>
@@ -63,6 +65,7 @@ function PlanningsTable({ data }: Props) {
             </TableRow>
           )
         })}
+        {isLoading && <SkeletonTableRow numberOfCol={4} />}
       </TableBody>
     </Table>
   )

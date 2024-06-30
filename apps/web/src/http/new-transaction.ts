@@ -6,7 +6,7 @@ interface Props {
   type: string
   paymentDate: string
   tags?: number[]
-  planningId?: string
+  planningId?: string | null
 }
 
 export async function newTransaction(props: Props) {

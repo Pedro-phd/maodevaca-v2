@@ -1,9 +1,12 @@
-import { use } from 'react'
+'use client'
+import { useQuery } from '@tanstack/react-query'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { getPlannings } from '@/http/get-plannings'
 import { getTransactionsPlannings } from '@/http/get-transactions-plannings'
 
-import PlanningsTransactionsTable from './components/plannings-transactions-table'
+import PlanningsMembers from '../components/plannings-members'
+import PlanningsTransactionsTable from '../components/plannings-transactions-table'
 
 interface Props {
   params: {
@@ -12,13 +15,32 @@ interface Props {
 }
 
 function PlanningTransactions({ params }: Props) {
-  const data = use(getTransactionsPlannings(params.planningId))
+  const { data } = useQuery({
+    queryKey: ['plannings-transactions-data'],
+    queryFn: () => getTransactionsPlannings(params.planningId),
+  })
+  const plannings = useQuery({
+    queryKey: ['plannings-data'],
+    queryFn: getPlannings,
+  })
+
+  const currentPlanning = plannings.data?.find(
+    (p) => p.id === params.planningId,
+  )
+
+  console.log(currentPlanning)
 
   return (
     <div className="h-full w-full">
       <Card>
-        <CardHeader>
-          <CardTitle>Transações do plano</CardTitle>
+        <CardHeader className="flex flex-row justify-between">
+          <CardTitle>Transações do plano {currentPlanning?.name}</CardTitle>
+          <PlanningsMembers
+            members={currentPlanning?.members}
+            ownerId={currentPlanning?.ownerId}
+            planningId={params.planningId}
+            refetch={plannings.refetch}
+          />
         </CardHeader>
         <CardContent>
           <PlanningsTransactionsTable data={data} />

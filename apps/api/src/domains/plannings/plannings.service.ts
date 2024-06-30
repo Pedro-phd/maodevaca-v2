@@ -76,6 +76,8 @@ export class PlanningsService {
               select: {
                 name: true,
                 avatarUrl: true,
+                email: true,
+                id: true,
               },
             },
           },

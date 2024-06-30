@@ -4,6 +4,7 @@ import { format } from 'date-fns'
 import { CircleMinus, CirclePlus, SquareArrowOutUpRight } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
+import SkeletonTableRow from '@/components/skeleton-table-row'
 import { Button } from '@/components/ui/button'
 import {
   Table,
@@ -20,9 +21,10 @@ import { allMonths, formatDate } from '@/lib/utils'
 
 interface Props {
   data?: Transaction[]
+  isLoading: boolean
 }
 
-function TransactionTable({ data }: Props) {
+function TransactionTable({ data, isLoading = true }: Props) {
   // const tags = use(getTags())
 
   const today = new Date()
@@ -31,7 +33,6 @@ function TransactionTable({ data }: Props) {
   const { push } = useRouter()
 
   const goToPlanning = (planningId: string | null) => {
-    console.log('asd')
     push(`/dashboard/plannings/${planningId}`)
   }
 
@@ -88,6 +89,7 @@ function TransactionTable({ data }: Props) {
             </TableRow>
           )
         })}
+        {isLoading && <SkeletonTableRow numberOfCol={5} />}
       </TableBody>
       {data?.length === 0 ||
         (data === undefined && (

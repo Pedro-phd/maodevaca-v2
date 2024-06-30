@@ -15,7 +15,6 @@ const newTransactionSchema = z.object({
 
 export async function newTransactionAction(data: FormData) {
   const validation = newTransactionSchema.safeParse(Object.fromEntries(data))
-  console.log(Object.fromEntries(data))
   if (!validation.success) {
     const errors = validation.error.flatten().fieldErrors
     return { success: false, message: null, errors }
@@ -35,7 +34,7 @@ export async function newTransactionAction(data: FormData) {
       description,
       paymentDate: formatedDate,
       type,
-      planningId,
+      planningId: planningId === 'empty-planning#hash' ? null : planningId,
       tags,
     })
     console.log(res)
