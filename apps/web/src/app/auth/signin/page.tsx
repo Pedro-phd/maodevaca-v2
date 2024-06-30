@@ -20,7 +20,7 @@ export default function SignInPage() {
   const [{ message, success, errors }, handleSubmit, isLoading] = useFormState(
     signInAction,
     () => {
-      router.push('/')
+      router.push('/dashboard')
     },
   )
 

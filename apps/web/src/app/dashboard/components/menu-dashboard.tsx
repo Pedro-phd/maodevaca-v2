@@ -71,7 +71,7 @@ function MenuDashboard() {
             />
             <MenuItem
               title="Gráficos"
-              href="/dashboard/charts"
+              href="/dashboard/coming-soon"
               icon={<LineChart className="text-stone-600" />}
             />
           </div>
@@ -79,12 +79,12 @@ function MenuDashboard() {
           <div className="flex flex-col gap-2">
             <MenuItem
               title="Descontos"
-              href="/dashboard/discount"
+              href="/dashboard/coming-soon"
               icon={<Percent className="text-stone-600" />}
             />
             <MenuItem
               title="Economize"
-              href="/dashboard/economy"
+              href="/dashboard/coming-soon"
               icon={<HandCoins className="text-stone-600" />}
             />
           </div>
