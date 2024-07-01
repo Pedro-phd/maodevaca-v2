@@ -1,6 +1,30 @@
 version: '3.7'
 
+volumes:
+  database:
+    driver: local
+
 services:
+  web:
+    container_name: web
+    build:
+      context: .
+      dockerfile: ./apps/web/Dockerfile
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - app_network
+  # api:
+  #   container_name: api
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/api/Dockerfile
+  #   restart: always
+  #   ports:
+  #     - 3001:3001
+  #   networks:
+  #     - app_network
   pg:
     image: bitnami/postgresql:latest
     ports:
@@ -9,3 +33,11 @@ services:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
       - POSTGRES_DB=mao-de-vaca
+    networks:
+      - app_network
+    volumes:
+      - database:/var/lib/postgresql
+
+networks:
+  app_network:
+    external: true

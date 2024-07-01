@@ -9,6 +9,7 @@ interface Props {
 
 const CaveatBrush = Caveat_Brush({
   weight: ['400'],
+  subsets: ['latin'],
 })
 
 function Logo({ className }: Props) {

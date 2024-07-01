@@ -71,6 +71,8 @@ export const mockPlannings: Planning[] = [
         user: {
           name: 'admin',
           avatarUrl: null,
+          id: '1',
+          email: 'admin@email.com',
         },
       },
       {
@@ -78,6 +80,8 @@ export const mockPlannings: Planning[] = [
         user: {
           name: 'Celia Konopelski',
           avatarUrl: 'https://avatars.githubusercontent.com/u/13225608',
+          id: '2',
+          email: 'celia@email.com',
         },
       },
     ],
@@ -96,6 +100,8 @@ export const mockPlannings: Planning[] = [
         user: {
           name: 'admin',
           avatarUrl: null,
+          id: '1',
+          email: 'admin@email.com',
         },
       },
       {
@@ -103,6 +109,8 @@ export const mockPlannings: Planning[] = [
         user: {
           name: 'Celia Konopelski',
           avatarUrl: 'https://avatars.githubusercontent.com/u/13225608',
+          id: '2',
+          email: 'celia@email.com',
         },
       },
     ],
@@ -121,6 +129,8 @@ export const mockPlannings: Planning[] = [
         user: {
           name: 'admin',
           avatarUrl: null,
+          id: '1',
+          email: 'admin@email.com',
         },
       },
       {
@@ -128,6 +138,8 @@ export const mockPlannings: Planning[] = [
         user: {
           name: 'Celia Konopelski',
           avatarUrl: 'https://avatars.githubusercontent.com/u/13225608',
+          id: '2',
+          email: 'celia@email.com',
         },
       },
     ],
